@@ -12,6 +12,10 @@ This exam is for the Azure Architect role. Candidates for this exam are Azure So
 If a candidate does not get a passing score on this exam in the first time, he/she must wait at least 24 hours to retake the exam.
 If this happens for the second time, the candidate must wait for at least 14 days to retake the exam. By this way, there is a maximum of 5 appearances allowed for an exam in a year.
 
+- Number of questions: 40 - 60
+- Exam time: 150 minutes
+- Passing score: 700
+
 ## Skills measured and links
 
 - Deploy and Configure Infrastructure (25-30%)
@@ -46,9 +50,29 @@ If this happens for the second time, the candidate must wait for at least 14 day
     - Generate shared access signature
       - **TODO**
     - Install and use Azure Storage Explorer
-      - **TODO**
+      - <https://azure.microsoft.com/en-us/features/storage-explorer/>
+      - <https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows>
+      - Easily manage Storage anywhere from Windows, macOS, and Linux
+      - Access multiple accounts and subscriptions across Azure, Azure Stack, and the sovereign Cloud
+      - Create, delete, view, and edit storage resources
+      - View and edit Blob, Queue, Table, File, Cosmos DB storage and Data Lake Storage
+      - Obtain shared access signature (SAS) keys
+      - Available for Windows, Mac, and Linux
+      - Gain easy access to manage your virtual machine disks
+      - Work with either Azure Resource Manager or classic storage accounts, plus manage and configure cross-origin resource sharing (CORS) rules.
     - Manage access keys
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1>
+      - Account key and Shared access signatures (SAS). Your storage account includes both a primary and secondary access key, both of which grant administrative access to your account, and all resources within it. Exposing either of these keys opens your account to the possibility of malicious or negligent use. Shared access signatures provide a safe alternative that allows clients to read, write, and delete data in your storage account according to the permissions you've explicitly granted, and without need for an account key.
+      - A shared access signature provides delegated access to resources in your storage account. With a SAS, you can grant clients access to resources in your storage account, without sharing your account keys. This is the key point of using shared access signatures in your applications--a SAS is a secure way to share your storage resources without compromising your account keys.
+      - Your storage account key is similar to the root password for your storage account. Always be careful to protect your account key. Avoid distributing it to other users, hard-coding it, or saving it anywhere in plaintext that is accessible to others. Regenerate your account key using the Azure portal if you believe it may have been compromised.
+      - A SAS gives you granular control over the type of access you grant to clients who have the SAS, including:
+        - The interval over which the SAS is valid, including the start time and the expiry time.
+        - The permissions granted by the SAS. For example, a SAS for a blob might grant read and write permissions to that blob, but not delete permissions.
+        - An optional IP address or range of IP addresses from which Azure Storage will accept the SAS. For example, you might specify a range of IP addresses belonging to your organization.
+        - The protocol over which Azure Storage will accept the SAS. You can use this optional parameter to restrict access to clients using HTTPS.
+      - You can create two types of shared access signatures:
+        - Service SAS. The service SAS delegates access to a resource in just one of the storage services: the Blob, Queue, Table, or File service.
+        - Account SAS. The account SAS delegates access to resources in one or more of the storage services. All of the operations available via a service SAS are also available via an account SAS. Additionally, with the account SAS, you can delegate access to operations that apply to a given service, such as Get/Set Service Properties and Get Service Stats. You can also delegate access to read, write, and delete operations on blob containers, tables, queues, and file shares that are not permitted with a service SAS.
     - Monitor activity log by using Log Analytics
       - **TODO**
     - Implement Azure storage replication
