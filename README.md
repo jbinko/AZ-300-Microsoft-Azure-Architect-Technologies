@@ -21,7 +21,13 @@ If this happens for the second time, the candidate must wait for at least 14 day
 - Deploy and Configure Infrastructure (25-30%)
   - Analyze resource utilization and consumption
     - Configure diagnostic settings on resources
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/diagnostic-logs-overview#diagnostic-settings>
+      - Resource logs - these logs come from Azure services that deploy resources within an Azure subscription, such as Network Security Groups or Storage Accounts.
+      - Resource diagnostic logs are configured using resource diagnostic settings. Tenant diagnostic logs are configured using a tenant diagnostic setting.
+      - Where diagnostic logs and metrics are sent (Storage Account, Event Hubs, and/or Log Analytics).
+      - Which log categories are sent and whether metric data is also sent.
+      - How long each log category should be retained in a storage account. A retention of zero days means logs are kept forever. Otherwise, the value can be any number of days.
+      - Collection of diagnostic logs can be enabled as part of creating a resource in a Resource Manager template or after a resource is created from that resource's page in the portal. You can also enable collection at any point using Azure PowerShell or CLI commands, or using the Azure Monitor REST API.
     - Create baseline for resources
       - **TODO**
     - Create and rest alerts
