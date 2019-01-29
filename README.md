@@ -109,3 +109,155 @@ If this happens for the second time, the candidate must wait for at least 14 day
       - **TODO**
 
 ___
+
+- Implement Workloads and Security (20-25%)
+  - Migrate servers to Azure
+    - Migrate by using Azure Site Recovery (ASR)
+      - **TODO**
+    - Migrate using P2V
+      - **TODO**
+    - Configure storage
+      - **TODO**
+    - Create a backup vault
+      - **TODO**
+    - Prepare source and target environments
+      - **TODO**
+    - Backup and restore data
+      - **TODO**
+    - Deploy Azure Site Recovery (ASR) agent
+      - **TODO**
+    - Prepare virtual network
+      - **TODO**
+  - Configure serverless computing
+    - Create and manage objects
+      - **TODO**
+    - Manage a Logic App resource
+      - **TODO**
+    - Manage Azure Function app settings
+      - **TODO**
+    - Manage Event Grid
+      - **TODO**
+    - Manage Service Bus
+      - **TODO**
+  - Implement application load balancing
+    - Configure application gateway and load balancing rules
+      - **TODO**
+    - Implement front end IP configurations
+      - **TODO**
+    - Manage application load balancing
+      - **TODO**
+  - Integrate on premises network with Azure virtual network
+    - Create and configure Azure VPN Gateway
+      - **TODO**
+    - Create and configure site to site VPN
+      - **TODO**
+    - Configure Express Route
+      - **TODO**
+    - Verify on premises connectivity
+      - **TODO**
+    - Manage on-premise connectivity with Azure
+      - **TODO**
+  - Manage role-based access control (RBAC)
+    - Create a custom role
+      - **TODO**
+    - Configure access to Azure resources by assigning roles
+      - **TODO**
+    - Configure management access to Azure
+      - **TODO**
+    - Troubleshoot RBAC
+      - **TODO**
+    - Implement RBAC policies
+      - **TODO**
+    - Assign RBAC roles
+      - **TODO**
+  - Implement Multi-Factor Authentication (MFA)
+    - Enable MFA for an Azure tenant
+      - **TODO**
+    - Configure user accounts for MFA
+      - **TODO**
+    - Configure fraud alerts
+      - **TODO**
+    - Configure bypass options
+      - **TODO**
+    - Configure trusted IPs
+      - **TODO**
+    - Configure verification methods
+      - **TODO**
+    - Manage role-based access control (RBAC)
+      - **TODO**
+    - Implement RBAC policies
+      - **TODO**
+    - Assign RBAC Roles
+      - **TODO**
+    - Create a custom role
+      - **TODO**
+    - Configure access to Azure resources by assigning roles
+      - **TODO**
+    - Configure management access to Azure
+      - **TODO**
+
+___
+
+- Create and Deploy Apps (5-10%)
+  - Create web apps by using PaaS
+    - Create an Azure App Service Web App
+      - **TODO**
+    - Create documentation for the API
+      - **TODO**
+    - Create an App Service Web App for containers
+      - **TODO**
+    - Create an App Service background task by using WebJobs
+      - **TODO**
+    - Enable diagnostics logging
+      - **TODO**
+  - Design and develop apps that run in containers
+    - Configure diagnostic settings on resources
+      - **TODO**
+    - Create a container image by using a Docker file
+      - **TODO**
+    - Create an Azure Container Service (ACS/AKS)
+      - **TODO**
+    - Publish an image to the Azure Container Registry
+      - **TODO**
+    - Implement an application that runs on an Azure Container Instance
+      - **TODO**
+    - Manage container settings by using code
+      - **TODO**
+
+___
+
+- Implement Authentication and Secure Data (5-10%)
+  - Implement authentication
+    - Implement authentication by using certificates, forms-based authentication, tokens, or Windows-integrated authentication
+      - **TODO**
+    - Implement multi-factor authentication by using Azure AD
+      - **TODO**
+    - Implement OAuth2 authentication
+      - **TODO**
+    - Implement Managed Service Identity (MSI) Service Principal authentication
+      - **TODO**
+  - Implement secure data solutions
+    - Encrypt and decrypt data at rest and in transit
+      - **TODO**
+    - Encrypt data with Always Encrypted
+      - **TODO**
+    - Implement Azure Confidential Compute and SSL/TLS communications
+      - **TODO**
+    - Create, read, update, and delete keys, secrets, and certificates by using the KeyVault API
+      - **TODO**
+
+___
+
+- Develop for the Cloud (20-25%)
+  - Configure a message-based integration architecture
+    - Configure an app or service to send emails, Event Grid, and the Azure Relay Service
+      - **TODO**
+    - Create and configure Notification Hub, Event Hub, and Service Bus
+      - **TODO**
+    - Configure queries across multiple products
+      - **TODO**
+  - Develop for autoscaling
+    - Implement autoscaling rules and patterns (schedule, operational/system metrics, code that addresses singleton application instances)
+      - **TODO**
+    - Implement code that addresses transient state
+      - **TODO**
