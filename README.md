@@ -38,7 +38,7 @@ If this happens for the second time, the candidate must wait for at least 14 day
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-classic-portal>
       - Classic metric alerts in Azure Monitor provide a way to get notified when one of your metrics cross a threshold. Classic metric alerts is an older functionality that allows for alerting only on non-dimensional metrics. There is an existing newer functionality called Metric alerts which has improved functionality over classic metric alerts.
       - In the portal, locate the resource that you want to monitor, and then select it. In the MONITORING section, select Alerts (Classic).
-      ```az monitor alert create --name <alert name> --resource-group <group name> --action email <email1 email2 ...> --action webhook <URI> --target <target object ID> --condition "<METRIC> {>,>=,<,<=} <THRESHOLD> {avg,min,max,total,last} ##h##m##s"```
+      - ```az monitor alert create --name <alert name> --resource-group <group name> --action email <email1 email2 ...> --action webhook <URI> --target <target object ID> --condition "<METRIC> {>,>=,<,<=} <THRESHOLD> {avg,min,max,total,last} ##h##m##s"```
       - After you create an alert, you can select it and do one of the following tasks:
         - View a graph that shows the metric threshold and the actual values from the previous day.
         - Edit or delete it.
@@ -47,7 +47,8 @@ If this happens for the second time, the candidate must wait for at least 14 day
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-metric>
       - In the Manage rules blade, you can view all your alert rules across subscriptions. You can further filter the rules using Resource group, Resource type and Resource. If you want to see only metric alerts, select Signal type as Metrics.
     - Analyze metrics across subscription
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/metrics-charts>
+      - If you have more than one Azure subscription, Metrics Explorer pulls out the resources across all subscriptions that are selected in the Portal Settings -> Filter by subscriptions list.
     - Create action groups
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/action-groups>
       - An action group is a collection of notification preferences defined by the owner of an Azure subscription. Azure Monitor and Service Health alerts use action groups to notify users that an alert has been triggered. Various alerts may use the same action group or different action groups depending on the user's requirements.
