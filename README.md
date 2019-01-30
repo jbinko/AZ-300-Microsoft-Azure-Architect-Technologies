@@ -54,7 +54,8 @@ If this happens for the second time, the candidate must wait for at least 14 day
       - An action group is a collection of notification preferences defined by the owner of an Azure subscription. Azure Monitor and Service Health alerts use action groups to notify users that an alert has been triggered. Various alerts may use the same action group or different action groups depending on the user's requirements.
       - Email / SMS / Push / Voice / Function / LogicApp / Webhook / ITSM / Runbook
     - Monitor for unused resources
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/advisor/advisor-overview>
+      - Azure Advisor is a service that, among other things, identifies virtual machines with low utilization from a CPU or network usage standpoint. From there, you can decide to either shut down or resize the machine based on the estimated cost to continue running the machines. Advisor also provides recommendations for reserved instance purchases. The recommendations are based on your last 30 days of virtual machine usage. When acted on, the recommendations can help you reduce your spending.
     - Monitor spend
       - **TODO**
     - Report on spend
