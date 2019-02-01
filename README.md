@@ -17,6 +17,8 @@ If this happens for the second time, the candidate must wait for at least 14 day
 - Exam time: 150 minutes
 - Passing score: 700
 
+Practice tests will be available in February or March 2019.
+
 ## Skills measured and links
 
 - Deploy and Configure Infrastructure (25-30%)
@@ -66,7 +68,16 @@ If this happens for the second time, the candidate must wait for at least 14 day
       - **TODO**
   - Create and configure storage accounts
     - Configure network access to the storage account
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/storage/common/storage-network-security>
+      - Configure storage accounts to deny access to traffic from all networks (including internet traffic) by default. Then grant access to traffic from specific VNets. This configuration enables you to build a secure network boundary for your applications. You can also grant access to public internet IP address ranges, enabling connections from specific internet or on-premises clients.
+      - When network rules are configured, only applications requesting data from over the specified set of networks can access a storage account.
+      - Network rules are enforced on all network protocols to Azure storage, including REST and SMB. To access the data with tools like Azure portal, Storage Explorer, and AZCopy, explicit network rules are required.
+      - Virtual machine disk traffic (including mount and unmount operations, and disk IO) is not affected by network rules.
+      - There are some cases where exceptions must be granted to enable full functionality. You can configure storage accounts with exceptions for trusted Microsoft services, and for access to storage analytics data.
+      - ```az storage account update --resource-group "myresourcegroup" --name "mystorageaccount" --bypass Logging Metrics AzureServices```
+      - <https://azure.microsoft.com/en-us/blog/virtual-network-service-endpoints-and-firewalls-for-azure-storage-now-generally-available/>
+      - To enable VNet protection, first enable service endpoints for storage in the VNet. Virtual Network Service Endpoints allow you to secure your critical Azure service resource to only your virtual network. Service endpoints also provide optimal routing for Azure traffic over the Azure backbone in scenarios where Internet traffic is routed through virtual appliances or on-premises.
+      - On the storage account you can select to allow access to one or more VNets. You may also configure to allow access to one or more public IP ranges.
     - Create and configure storage account
       - **TODO**
     - Generate shared access signature
