@@ -79,9 +79,12 @@ Practice tests will be available in February or March 2019.
       - To enable VNet protection, first enable service endpoints for storage in the VNet. Virtual Network Service Endpoints allow you to secure your critical Azure service resource to only your virtual network. Service endpoints also provide optimal routing for Azure traffic over the Azure backbone in scenarios where Internet traffic is routed through virtual appliances or on-premises.
       - On the storage account you can select to allow access to one or more VNets. You may also configure to allow access to one or more public IP ranges.
     - Create and configure storage account
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal>
+      - ```az storage account create --name storagequickstart --resource-group storage-quickstart-resource-group --location westus --sku Standard_LRS --kind StorageV2```
+      - ```New-AzStorageAccount -ResourceGroupName $resourceGroup -Name "storagequickstart" -Location $location -SkuName Standard_LRS -Kind StorageV2```
     - Generate shared access signature
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-explorer-blobs>
+      - Right-click the desired blob container, and - from the context menu - select Get Shared Access Signature.
     - Install and use Azure Storage Explorer
       - <https://azure.microsoft.com/en-us/features/storage-explorer/>
       - <https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows>
