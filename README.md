@@ -155,8 +155,23 @@ Practice tests will be available in February or March 2019.
       - You must return to your domain registrar and add the Azure AD DNS information from your copied TXT file. Creating this TXT record for your domain "verifies" ownership of your domain name
       - Set the TTL (time to live) to 3600 seconds (60 minutes), and then save the information
       - On the page, select Verify to make sure your custom domain is properly registered and is valid for Azure AD
-    - Configure Azure AD Identity Protection, Azure AD Join, and Enterprise State Roaming
-      - **TODO**
+    - Configure Azure AD Identity Protection
+      - <https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/enable>
+        - Get a consolidated view of flagged users and risk events detected using machine learning algorithms
+        - Set risk-based Conditional Access policies to automatically protect your users
+        - Improve security posture by acting on vulnerabilities
+      - <https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/overview>
+      - Azure Portal -> Marketplace -> Azure AD Identity Protection -> Create
+      - Feature of the Azure AD Premium P2 edition
+    - Configure Azure AD Join
+      - <https://docs.microsoft.com/en-us/azure/active-directory/devices/hybrid-azuread-join-managed-domains>
+      - <https://aadguide.azurewebsites.net/aadjoin/>
+      - Azure AD Connect -> Configure -> Configure device options -> Hybrid Azure AD join
+    - Configure Azure AD Enterprise State Roaming
+      - <https://docs.microsoft.com/en-us/azure/active-directory/devices/enterprise-state-roaming-enable>
+      - Enterprise State Roaming is available to any organization with an Azure AD Premium or Enterprise Mobility + Security (EMS) license.
+      - Azure Portal -> AAD -> Devices -> Enterprise State Roaming -> Select Users may sync settings and app data across devices
+      - For a Windows 10 device to use the Enterprise State Roaming service, the device must authenticate using an Azure AD identity. For devices that are joined to Azure AD, the user’s primary sign-in identity is their Azure AD identity, so no additional configuration is required. For devices that use on-premises Active Directory, the IT admin must Configure hybrid Azure Active Directory joined devices.
     - Configure self-service password reset
       - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/tutorial-sspr-pilot>
       - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-sspr-deployment>
