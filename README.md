@@ -147,11 +147,27 @@ Practice tests will be available in February or March 2019.
       - **TODO**
   - Manage Azure Active Directory (AD)
     - Add custom domains
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/add-custom-domain>
+      - Initial domain name, domainname.onmicrosoft.com. You can't change or delete
+      - You must create your domain name with a domain registrar. You must include .com, .net, or any other top-level extension
+      - Azure Portal -> AAD -> Custom domain names -> Add custom domain -> Add domain
+      - Unverified domain is added and the page showing you your DNS info
+      - You must return to your domain registrar and add the Azure AD DNS information from your copied TXT file. Creating this TXT record for your domain "verifies" ownership of your domain name
+      - Set the TTL (time to live) to 3600 seconds (60 minutes), and then save the information
+      - On the page, select Verify to make sure your custom domain is properly registered and is valid for Azure AD
     - Configure Azure AD Identity Protection, Azure AD Join, and Enterprise State Roaming
       - **TODO**
     - Configure self-service password reset
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/tutorial-sspr-pilot>
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-sspr-deployment>
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/concept-sspr-howitworks>
+      - Self-Service Password Reset/Change/Unlock with on-premises writeback is a premium feature of Azure AD. 
+      - Standalone Office 365 licensing plans don't support "Self-Service Password Reset/Change/Unlock with on-premises writeback"
+      - Self-service password reset portal located at <https://aka.ms/ssprsetup>
+      - Self-service password reset portal <https://aka.ms/sspr>
+      - Azure Portal -> AAD -> Password reset -> Properties -> Self Service Password Reset Enabled
+      - Azure Portal -> AAD -> Password reset -> Authentication methods -> Number of methods required to reset to 2
+      - Azure Portal -> AAD -> Password reset -> Notifications (Notify users on password resets, Notify all admins when other admins reset their password), Registration (Require users to register when signing in), Customization (Customize helpdesk link)
     - Implement conditional access policies
       - **TODO**
     - Manage multiple directories
@@ -166,7 +182,12 @@ Practice tests will be available in February or March 2019.
     - Manage Azure AD Connect
       - **TODO**
     - Manage password sync and writeback
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/concept-sspr-writeback>
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-sspr-writeback>
+      - Self-Service Password Reset/Change/Unlock with on-premises writeback is a premium feature of Azure AD.
+      - Standalone Office 365 licensing plans don't support "Self-Service Password Reset/Change/Unlock with on-premises writeback"
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/concept-sspr-howitworks#write-back-passwords-to-your-on-premises-directory>
+      - If the switch is set to Yes, then writeback is enabled, and federated, pass-through authentication, or password hash synchronized users are able to reset their passwords.
 
 ___
 
