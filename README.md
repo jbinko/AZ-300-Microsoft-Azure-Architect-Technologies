@@ -268,7 +268,20 @@ ___
       - **TODO**
   - Implement Multi-Factor Authentication (MFA)
     - Enable MFA for an Azure tenant
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-getstarted>
+      - Requires global administrator account in Azure AD tenant.
+      - Correct licenses assigned to users
+        - Multi-Factor Authentication for Office 365 Microsoft 365 Business - Works only for O365/M365 This version is part of an Office 365 or Microsoft 365 Business subscription.
+        - Multi-Factor Authentication for Azure AD Administrators - Works only for Azure AD Global Administrator role at no additional cost.
+        - Azure Multi-Factor Authentication - Full version. Additional configuration options via the Azure portal, advanced reporting, and support for a range of on-premises and cloud applications. Requires Azure Active Directory Premium, and can be deployed either in the cloud or on-premises.
+      - Choose how to enable
+        - Enabled by conditional access policy - the most flexible way to enable two-step verification for your users
+        - Enabled by Azure AD Identity Protection - uses the Azure AD Identity Protection risk policy to require two-step verification based only on sign-in risk for all cloud applications
+        - Enabled by changing user state - requires users to perform two-step verification every time they sign in and overrides conditional access policies
+      - Enable at least one authentication method (best is Microsoft Authenticator)
+      - Ask users to enroll https://aka.ms/mfasetup (ask users to register authentication methods beforehand)
+      - Step 1: Azure Portal -> AAD -> Users -> Multi-Factor Authentication -> service settings -> verification options, check all of the boxes for methods available to users -> save
+      - Step 2: Azure Portal -> AAD -> Conditional access -> New policy -> Include/Exclude users/groups, choose optionally conditions -> Grant Require multi-factor authentication -> Enable policy -> Create
     - Configure user accounts for MFA
       - **TODO**
     - Configure fraud alerts
