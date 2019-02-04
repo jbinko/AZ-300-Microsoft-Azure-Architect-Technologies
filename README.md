@@ -283,11 +283,20 @@ ___
       - Step 1: Azure Portal -> AAD -> Users -> Multi-Factor Authentication -> service settings -> verification options, check all of the boxes for methods available to users -> save
       - Step 2: Azure Portal -> AAD -> Conditional access -> New policy -> Include/Exclude users/groups, choose optionally conditions -> Grant Require multi-factor authentication -> Enable policy -> Create
     - Configure user accounts for MFA
-      - **TODO**
+      - See above.
     - Configure fraud alerts
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings#fraud-alert>
+      - Users can report fraudulent attempts to access their resources. Users can report fraud attempts by using the mobile app or through their phone. This feature is specific to MFA Server (on-premises).
+      - Azure Portal -> AAD -> MFA -> Fraud alert -> Set the Allow users to submit fraud alerts setting to On -> Save
+      - Options
+        - Block user when fraud is reported (for 90 days or unblocked by Administrator)
+        - Code to report fraud during initial greeting - phone call to perform two-step verification. To report fraud, the user enters a code before pressing #
+      - View fraud reports: Azure Portal -> AAD -> Sign-ins
     - Configure bypass options
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings#one-time-bypass>
+      - One-time bypass - Allows a user to authenticate a single time without performing two-step verification. (temporary and expires after a specified number of seconds). The user needs to sign in before the one-time bypass expires.
+      - Azure Active Directory -> MFA -> One-time bypass -> Add, username as username@domain.com enter the number of seconds and reason.
+      - View one-time bypass reports: Azure Portal -> AAD -> MFA -> One-time bypass
     - Configure trusted IPs
       - **TODO**
     - Configure verification methods
