@@ -298,9 +298,25 @@ ___
       - Azure Active Directory -> MFA -> One-time bypass -> Add, username as username@domain.com enter the number of seconds and reason.
       - View one-time bypass reports: Azure Portal -> AAD -> MFA -> One-time bypass
     - Configure trusted IPs
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings#trusted-ips>
+      - Is used by administrators of a managed or federated tenant. Bypasses two-step verification for users who sign in from the company intranet. Only available in Full version of MFA and only IPv4.
+      - Step 1: Azure Portal -> AAD -> Conditional access -> Named locations -> New location -> Mark as trusted location -> enter CIDR -> Create
+      - Step 2: Azure Portal -> AAD -> Conditional access -> Named locations -> Configure MFA trusted IPs
+        - Select -> For requests from a specific range of public IPs -> enter CIDR
+        - Or Select -> For requests from federated users originating from my intranet (All federated users who sign in from the corporate network bypass two-step verification by using a claim that is issued by AD FS)
+        - Save
+      - Step 3: Azure Portal -> AAD -> MFA -> service settings -> Configure MFA trusted IPs
+        - Select -> For requests from a specific range of public IPs -> enter CIDR
+        - Or Select -> For requests from federated users originating from my intranet (All federated users who sign in from the corporate network bypass two-step verification by using a claim that is issued by AD FS)
+        - Save
     - Configure verification methods
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings#verification-methods>
+      - When your users enroll for MFA, they choose their preferred verification method from enabled options.
+        - Call to phone - user answers the call and presses #
+        - Text message to phone - Sends a text message that contains a verification code.
+        - Notification through mobile Microsoft Authenticator app - Sends a push notification to your device. The user views the notification and selects Verify to complete verification.
+        - Verification code from mobile app or hardware token - Microsoft Authenticator app generates a new OATH verification code every 30 seconds
+      - Azure Portal -> AAD -> Users and groups -> All users -> Multi-Factor Authentication -> service settings -> verification options -> select/unselect the methods -> Save
     - Manage role-based access control (RBAC)
       - **TODO**
     - Implement RBAC policies
