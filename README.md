@@ -59,9 +59,18 @@ Practice tests will be available in February or March 2019.
       - <https://docs.microsoft.com/en-us/azure/advisor/advisor-overview>
       - Azure Advisor is a service that, among other things, identifies virtual machines with low utilization from a CPU or network usage standpoint. From there, you can decide to either shut down or resize the machine based on the estimated cost to continue running the machines. Advisor also provides recommendations for reserved instance purchases. The recommendations are based on your last 30 days of virtual machine usage. When acted on, the recommendations can help you reduce your spending.
     - Monitor spend
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/billing/billing-getting-started#ways-to-monitor-your-costs-when-using-azure-services>
+      - You can use tags to group billing data for supported services. The tags show up throughout different cost reporting views.
+      - Use billing API to programmatically get usage data. Use the RateCard API and the Usage API together to get your billed usage.
+      - <https://docs.microsoft.com/en-us/azure/billing/billing-getting-started#costs>
+      - You can see the current spend and burn rate in Azure portal.
+      - Azure Portal -> Subscriptions -> see the cost breakdown and burn rate -> Cost analysis see the cost breakdown by resource. Wait 24 hours for the data to populate.
+      - You can filter by different properties like tags, resource type, resource group, and timespan. You can download csv.
     - Report on spend
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/billing/billing-download-azure-invoice-daily-usage-date#download-usage>
+      - Download usage as an EA customer, Azure portal -> Cost Management + Billing -> Usage + charges
+      - <https://docs.microsoft.com/en-us/azure/billing/billing-understand-your-bill-ea#review-charges>
+      - You must be an Enterprise Administrator, Enterprise portal -> Reports -> Usage Summary
     - Utilize Log Search query functions
       - **TODO**
     - View alerts in Log Analytics
