@@ -72,9 +72,17 @@ Practice tests will be available in February or March 2019.
       - <https://docs.microsoft.com/en-us/azure/billing/billing-understand-your-bill-ea#review-charges>
       - You must be an Enterprise Administrator, Enterprise portal -> Reports -> Usage Summary
     - Utilize Log Search query functions
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/log-query-overview>
+      - <https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/functions>
+      - Demo environment - <https://portal.loganalytics.io/demo>
+      - Log data collected by Azure Monitor is stored in a Log Analytics workspace, which is based on Azure Data Explorer.
+      - To use an query with another query you can save it as a function. This allows you to simplify complex queries by breaking them into parts and allows you to reuse common code with multiple queries.
+      - Azure portal -> Save -> Save as Function
+      - MyFunction | where Title contains "SQL"
     - View alerts in Log Analytics
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-overview#all-alerts-page>
+      - Notify you when important conditions are found in your monitoring data. Azure Monitor, which now includes Log Analytics and Application Insights. Not classic alerts.
+      - Alert Rule => Target+Metric+Treshold calls action-group+actions and monitor-condition+alert-state
   - Create and configure storage accounts
     - Configure network access to the storage account
       - <https://docs.microsoft.com/en-us/azure/storage/common/storage-network-security>
