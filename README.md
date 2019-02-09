@@ -32,7 +32,10 @@ Practice tests will be available in February or March 2019.
       - How long each log category should be retained in a storage account. A retention of zero days means logs are kept forever. Otherwise, the value can be any number of days.
       - Collection of diagnostic logs can be enabled as part of creating a resource in a Resource Manager template or after a resource is created from that resource's page in the portal. You can also enable collection at any point using Azure PowerShell or CLI commands, or using the Azure Monitor REST API.
     - Create baseline for resources
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-dynamic-thresholds>
+      - Metric Alert with Dynamic Thresholds detection uses ML to learn metrics' historical behavior, identify patterns and anomalies.
+      - Threshold setting - sensitivity controls the amount of deviation from metric behavior for alert. Sensitivity (High/Medium/Low)
+      - Operator setting - trigger when Lower than lower threshold; Greater than upper threshold; Greater than the upper threshold or lower than the lower threshold (default)
     - Create and raise alerts
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-metric>
       - Metric alerts in Azure Monitor provide a way to get notified when one of your metrics cross a threshold. Metric alerts work on a range of multi-dimensional platform metrics, custom metrics, Application Insights standard and custom metrics.
@@ -127,9 +130,15 @@ Practice tests will be available in February or March 2019.
         - Service SAS. The service SAS delegates access to a resource in just one of the storage services: the Blob, Queue, Table, or File service.
         - Account SAS. The account SAS delegates access to resources in one or more of the storage services. All of the operations available via a service SAS are also available via an account SAS. Additionally, with the account SAS, you can delegate access to operations that apply to a given service, such as Get/Set Service Properties and Get Service Stats. You can also delegate access to read, write, and delete operations on blob containers, tables, queues, and file shares that are not permitted with a service SAS.
     - Monitor activity log by using Log Analytics
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/collect-activity-logs>
+      - Activity Log is a log that offers insights into the operations performed on resources in your subscriptions
+      - Activity Log, you can determine the what, who, and when for any write operations (PUT, POST, DELETE) made for the resources in your subscription.
+      - <https://docs.microsoft.com/en-us/rest/api/storageservices/enabling-storage-logging-and-accessing-log-data>
+      - Storage Logging and Accessing Log - record details for both successful and failed requests in your storage account. These logs enable you to see details of read, write, and delete operations against your Azure tables, queues, and blobs. Enable you to see the reasons for failed requests such as timeouts, throttling, and authorization errors.
     - Implement Azure storage replication
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy>
+      - LRS, ZRS, GRS, RA-GRS, Paired regions
+      - RPO, RTO - <https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy-grs#what-is-the-rpo-and-rto-with-grs>
   - Create and configure a Virtual Machine (VM) for Windows and Linux
     - Configure high availability
       - **TODO**
