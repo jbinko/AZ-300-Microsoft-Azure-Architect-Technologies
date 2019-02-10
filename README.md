@@ -141,7 +141,32 @@ Practice tests will be available in February or March 2019.
       - RPO, RTO - <https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy-grs#what-is-the-rpo-and-rto-with-grs>
   - Create and configure a Virtual Machine (VM) for Windows and Linux
     - Configure high availability
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/virtual-machines/linux/manage-availability>
+      - Protects against: Unplanned Hardware Maintenance Event (Live Migration pauses for short time), An Unexpected Downtime (reboot, loss of the temporary drive), Planned Maintenance events (performed without any impact - sometimes updates require a planned reboot of VM in the suitable time window)
+      - Recommended high availability best practices
+        - Configure multiple virtual machines in an availability set for redundancy
+          Group two or more virtual machines in an availability set. -> ensures that at least one virtual machine is available and meets the 99.95% SLA. Avoid leaving a single instance virtual machine in an availability set by itself.
+          Each VM in availability set is assigned an update domain (five by default) and a fault domain (2-3). The order of update domains being rebooted may not proceed sequentially during planned maintenance, but only one update domain is rebooted at a time.
+          Fault domains define the group of virtual machines that share a common power source and network switch. Default, the virtual machines from availability set are separated across up to 2-3 fault domains.
+        - Use managed disks for VMs in an availability set
+          Managed disks better reliability for Availability Sets. Ensuring that the disks of VMs in an Availability Set are isolated from each other. Automatically placing the disks in different storage fault domains (storage clusters) and aligning them with the VM fault domain.
+          For unmanaged disks
+          - Keep all disks (OS and data) associated with a VM in the same storage account.
+          - Review the limits on the number of unmanaged disks in a Storage account (performance reasons).
+          - Use separate storage account for each VM in an Availability Set
+        - Use scheduled events to proactively respond to VM impacting events
+          VM is notified about upcoming maintenance events that can impact VM (requires subscription of events from inside of VM).
+          Customers can use the event to perform tasks prior to the maintenance, such as saving state, failing over to the secondary, and so on.
+          After you complete your logic for gracefully handling the maintenance event, you can approve the outstanding scheduled event to allow the platform to proceed with maintenance.
+        - Configure each application tier into separate availability sets
+          If you place two different tiers in the same availability set, all virtual machines in the same application tier can be rebooted at once. By configuring at least two virtual machines in an availability set for each tier, you guarantee that at least one virtual machine in each tier is available.
+        - Combine a load balancer with availability sets
+          Placing multiple virtual machines of the same tier under the same load balancer and availability set enables traffic to be continuously served by at least one instance.
+        - Use availability zones to protect from datacenter level failures
+          Availability zones, are alternative to availability sets. An Availability Zone is a physically separate zone within an Azure region. Three Availability Zones per supported region. Each Availability Zone has a distinct power source, network, and cooling. By architecting your solutions to use replicated VMs in zones, you can protect your apps and data from the loss of a datacenter. If one zone is compromised, then replicated apps and data are instantly available in another zone.
+          There is no additional cost for virtual machines deployed in an Availability Zone. 99.99% VM uptime SLA is offered when two or more VMs are deployed across two or more Availability Zones within an Azure region.
+          ```for i in `seq 1 3`; do az vm create --resource-group myResourceGroupSLB --name myVM$i --nics myNic$i --image UbuntuLTS --generate-ssh-keys --zone $i --custom-data cloud-init.txt```
+          ```az storage account create -n <accountname> -g <resourcegroup> -l <region> –sku Standard_ZRS –kind StorageV2```
     - Configure monitoring networking, storage, and virtual machine size
       - **TODO**
     - Deploy and configure scale sets
@@ -157,6 +182,7 @@ Practice tests will be available in February or March 2019.
       - ```az monitor autoscale create --resource-group myResourceGroup --resource myScaleSet --resource-type Microsoft.Compute/virtualMachineScaleSets --name autoscale --min-count 2 --max-count 10 --count 2```
       - ```az monitor autoscale rule create --resource-group myResourceGroup --autoscale-name autoscale --condition "Percentage CPU > 70 avg 5m" --scale out 3```
       - ```az monitor autoscale rule create --resource-group myResourceGroup --autoscale-name autoscale --condition "Percentage CPU < 30 avg 5m" --scale in 1```
+      - Zone-redundant scale set ```az vmss create --resource-group myResourceGroup --name myScaleSet --image UbuntuLTS --upgrade-policy-mode automatic --admin-username azureuser --generate-ssh-keys --zones 1 2 3```
       - For PowerShell use cmdlets ```New-AzVmss, Add-AzVmssExtension```
   - Automate deployment of Virtual Machines (VMs)
     - Modify Azure Resource Manager (ARM) template
