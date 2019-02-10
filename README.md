@@ -145,7 +145,19 @@ Practice tests will be available in February or March 2019.
     - Configure monitoring networking, storage, and virtual machine size
       - **TODO**
     - Deploy and configure scale sets
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/>
+      - Let you create and manage a group of identical, load balanced, and autoscaling VMs.
+      - Can scale VMs in the scale set manually, or rules to autoscale on resource usage like CPU, memory or network traffic.
+      - <https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/quick-create-portal>
+      - Azure portal -> Create Virtual machine scale set -> Name; OS Type; Resource Group; User Name and Credentials or SSH Keys; Location; Instances count and VM size
+      - Load balancer is created. NAT rules are used for remote connectivity such as RDP or SSH. E.g. VM1 104.42.1.19:50001, VM2 104.42.1.19:50002
+      - ```az vmss create --resource-group myResourceGroup --name myScaleSet --image UbuntuLTS --upgrade-policy-mode automatic --admin-username azureuser --generate-ssh-keys```
+      - ```az vmss extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --resource-group myResourceGroup --vmss-name myScaleSet --settings '{"fileUris":["https://raw.githubusercontent.com/Azure-Samples/compute-automation-configurations/master/automate_nginx.sh"],"commandToExecute":"./automate_nginx.sh"}'```
+      - ```az network lb rule create --resource-group myResourceGroup --name myLoadBalancerRuleWeb --lb-name myScaleSetLB --backend-pool-name myScaleSetLBBEPool --backend-port 80 --frontend-ip-name loadBalancerFrontEnd --frontend-port 80 --protocol tcp```
+      - ```az monitor autoscale create --resource-group myResourceGroup --resource myScaleSet --resource-type Microsoft.Compute/virtualMachineScaleSets --name autoscale --min-count 2 --max-count 10 --count 2```
+      - ```az monitor autoscale rule create --resource-group myResourceGroup --autoscale-name autoscale --condition "Percentage CPU > 70 avg 5m" --scale out 3```
+      - ```az monitor autoscale rule create --resource-group myResourceGroup --autoscale-name autoscale --condition "Percentage CPU < 30 avg 5m" --scale in 1```
+      - For PowerShell use cmdlets ```New-AzVmss, Add-AzVmssExtension```
   - Automate deployment of Virtual Machines (VMs)
     - Modify Azure Resource Manager (ARM) template
       - **TODO**
