@@ -167,8 +167,32 @@ Practice tests will be available in February or March 2019.
           There is no additional cost for virtual machines deployed in an Availability Zone. 99.99% VM uptime SLA is offered when two or more VMs are deployed across two or more Availability Zones within an Azure region.
           ```for i in `seq 1 3`; do az vm create --resource-group myResourceGroupSLB --name myVM$i --nics myNic$i --image UbuntuLTS --generate-ssh-keys --zone $i --custom-data cloud-init.txt```
           ```az storage account create -n <accountname> -g <resourcegroup> -l <region> –sku Standard_ZRS –kind StorageV2```
-    - Configure monitoring networking, storage, and virtual machine size
-      - **TODO**
+    - Configure monitoring, networking, storage, and virtual machine size
+      - <https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-monitoring>
+      - You can enable boot diagnostics, performance metrics and manage package updates
+      - Boot diagnostic captures boot output and stores it in Azure storage - troubleshoot VM boot issues
+      - View boot diagnostic ```az vm boot-diagnostics get-boot-log --resource-group myResourceGroupMonitor --name myVM```
+      - VM Metrics are automatically collected for the host and can be viewed in the Azure portal.
+      - To see more granular and VM-specific metrics, you need to install the Azure diagnostics extension on the VM. Enable guest-level monitoring in Azure portal. You can view these performance metrics and create alerts based on how the VM performs.
+      - Update management allows you to manage updates and patches for your Azure VMs. Directly from your VM, you can quickly assess the status of available updates, schedule installation of required updates, and review deployment results to verify updates were applied successfully to the VM.
+      - You can collect and view inventory for software, files, Linux daemons, Windows Services, and Windows registry keys on your computers. Tracking the configurations of your machines can help you pinpoint operational issues across your environment and better understand the state of your machines.
+      - You can do more advanced monitoring of your VM by using a solution like Azure Monitor for VMs.
+      - <https://docs.microsoft.com/en-us/azure/virtual-machines/linux/network-overview>
+      - VM can have multiple NICs, and can be added or removed through the lifecycle of a VM.
+      - Public / Private IP Address / Static / Dynamic
+      - VNET / Subnet / NSG / LB
+      - <https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-manage-disks>
+      - Operating system disk - Disk caching configuration optimized for OS performance. Because of this the OS disk should not be used for applications or data.
+      - Temporary disk - SSD of the VM host. Highly performant may be used for temporary data processing. Data can be lost.
+      - Datadisk can be added
+      - Standard disk and Premium disk
+      - ```az vm create --resource-group myResourceGroupDisk --name myVM --image UbuntuLTS --size Standard_DS2_v2 --generate-ssh-keys --data-disk-sizes-gb 128 128```
+      - The operating system needs to be configured to use additional disks
+      - You can take a disk snapshot. Read only, point-in-time copy of the disk to quickly save the state of a VM before configuration changes. VM can be restored using a snapshot. Snapshot is taken of each disk independently.
+      - ```az snapshot create --resource-group myResourceGroupDisk --source "$osdiskid" --name osDisk-backup```
+      - <https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-manage-vm#understand-vm-sizes>
+      - ```az vm list-sizes --location eastus```
+      - ```az vm create --resource-group myResourceGroupVM --name myVM3 --image UbuntuLTS --size Standard_F4s --generate-ssh-keys```
     - Deploy and configure scale sets
       - <https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/>
       - Let you create and manage a group of identical, load balanced, and autoscaling VMs.
