@@ -7,6 +7,7 @@
 - View video tutorials about the variety of question types - <https://www.microsoft.com/en-us/learning/certification-exams.aspx?types=true>
 - How to Prepare for Microsoft Azure Exam AZ-300? - <https://www.whizlabs.com/blog/az-300-exam-preparation/>
 - Another source of information <https://gregorsuttie.com/2018/10/02/azure-architect-design-az-300-exam/>
+- Preparation courses - <https://courses.microsoft.com/courses>
 
 This exam is for the Azure Architect role. Candidates for this exam are Azure Solution Architects who advise stakeholders and translates business requirements into secure, scalable, and reliable solutions. Candidates should have advanced experience and knowledge across various aspects of IT operations, including networking, virtualization, identity, security, business continuity, disaster recovery, data management, budgeting, and governance. This role requires managing how decisions in each area affects an overall solution. Candidates must be proficient in Azure administration, Azure development, and DevOps, and have expert-level skills in at least one of those domains.
 
@@ -210,9 +211,13 @@ Practice tests will be available in February or March 2019.
       - For PowerShell use cmdlets ```New-AzVmss, Add-AzVmssExtension```
   - Automate deployment of Virtual Machines (VMs)
     - Modify Azure Resource Manager (ARM) template
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-export-template>
+      - <https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy-portal#deploy-resources-from-custom-template>
+      - <https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authoring-templates>
     - Configure location of new VMs
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-cli#create-virtual-machine>    - ```az vm create --resource-group myResourceGroup --name myVM --image win2016datacenter --admin-username azureuser --admin-password myPassword12 --location EastUS```
+      - ```New-AzVm -ResourceGroupName "myResourceGroupVM" -Name "myVM" -Location "EastUS" -VirtualNetworkName "myVnet" -SubnetName "mySubnet" -SecurityGroupName "myNetworkSecurityGroup" -PublicIpAddressName "myPublicIpAddress" -Credential $cred```
+      - In the ARM template you can use ```"location": "EastUS"```
     - Configure VHD template
       - **TODO**
     - Deploy from template
@@ -325,11 +330,26 @@ ___
       - **TODO**
   - Implement application load balancing
     - Configure application gateway and load balancing rules
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/application-gateway/overview>
+      - Web traffic load balancer, OSI L7, you can route traffic, Autoscaling, Zone redundancy, Static VIP, SSL offload, Connection draining, Custom error pages, Web application firewall, Redirection, Session affinity, Websocket and HTTP/2 traffic, Rewrite HTTP headers
+      - <https://docs.microsoft.com/en-us/azure/load-balancer/tutorial-load-balancer-port-forwarding-portal#create-a-load-balancer-rule>
+      - <https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview>
+      - Load balancing, Port forwarding, Health probes, Outbound connections (SNAT)
+      - Front-end IP configuration for incoming traffic, the back-end IP pool to receive the traffic, and the required source and destination ports.
+      - Inbound network address translation (NAT) rule to forward traffic from a specific port of the front-end IP address to a specific port of a back-end VM.
+      - ```az network lb create --resource-group myResourceGroupILB --name myLoadBalancer --frontend-ip-name myFrontEnd --private-ip-address 10.0.0.7 --backend-pool-name myBackEndPool --vnet-name myVnet --subnet```
+      - ```az network lb probe create --resource-group myResourceGroupILB --lb-name myLoadBalancer --name myHealthProbe --protocol tcp --port 80```
+      - ```az network lb rule create --resource-group myResourceGroupILB --lb-name myLoadBalancer --name myHTTPRule --protocol tcp --frontend-port 80 --backend-port 80 --frontend-ip-name myFrontEnd --backend-pool-name myBackEndPool --probe-name myHealthProbe```
+      - ```for i in `seq 1 2`; do az network nic create --resource-group myResourceGroupILB --name myNic$i --vnet-name myVnet --subnet mySubnet --lb-name myLoadBalancer --lb-address-pools myBackEndPool done```
+      - <https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-rules-overview>
+      - <https://docs.microsoft.com/bs-latn-ba/azure/load-balancer/configure-load-balancer-outbound-cli#create-outbound-rule>
+      - Outbound rules allow you to control which virtual machines should be translated to which public IP addresses.
+      - ```az network lb outbound-rule create --resource-group myresourcegroupoutbound --lb-name lb --name outboundrule --frontend-ip-configs myfrontendoutbound --protocol All --idle-timeout 15 --outbound-ports 10000 --address-pool bepool```
     - Implement front end IP configurations
-      - **TODO**
+      - ```az network lb frontend-ip create -g MyResourceGroup -n MyFrontendIp --lb-name MyLb --private-ip-address 10.10.10.100 --subnet MySubnet --vnet-name MyVnet```
     - Manage application load balancing
-      - **TODO**
+      - <https://dzone.com/articles/understanding-azure-load-balancing-solutions>
+      - Azure Load Balancer (External, Internal), Azure Application Gateway (External, Internal), Azure Traffic Manager (Global selector)
   - Integrate on premises network with Azure virtual network
     - Create and configure Azure VPN Gateway
       - **TODO**
