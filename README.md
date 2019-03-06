@@ -8,6 +8,7 @@
 - How to Prepare for Microsoft Azure Exam AZ-300? - <https://www.whizlabs.com/blog/az-300-exam-preparation/>
 - Another source of information <https://gregorsuttie.com/2018/10/02/azure-architect-design-az-300-exam/>
 - Preparation courses - <https://courses.microsoft.com/courses>
+- Certification Prep Immersive Session: Azure Solutions Architect: Exams AZ 300 and AZ 301 - <https://content.microsoftready.com/FY19Q3/Session/CPS-CRT201>
 
 This exam is for the Azure Architect role. Candidates for this exam are Azure Solution Architects who advise stakeholders and translates business requirements into secure, scalable, and reliable solutions. Candidates should have advanced experience and knowledge across various aspects of IT operations, including networking, virtualization, identity, security, business continuity, disaster recovery, data management, budgeting, and governance. This role requires managing how decisions in each area affects an overall solution. Candidates must be proficient in Azure administration, Azure development, and DevOps, and have expert-level skills in at least one of those domains.
 
@@ -17,6 +18,8 @@ If this happens for the second time, the candidate must wait for at least 14 day
 - Number of questions: 40 - 60
 - Exam time: 150 minutes
 - Passing score: 700
+
+- Do time management (after hands on labs some additional questions still might come), better to skip hands on labs if you are blocked by some hard question and answer rest of questions.
 
 Practice tests will be available in February or March 2019.
 
@@ -321,13 +324,30 @@ ___
     - Create and manage objects
       - **TODO**
     - Manage a Logic App resource
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-overview>
+      - Helps automate and orchestrate tasks, business processes, and workflows when you need to integrate apps, data, systems, and services
+      - Scalable solutions for app integration, data integration, system integration, enterprise application integration (EAI), and business-to-business (B2B) communication, whether in the cloud, on premises, or both.
+      - <https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-first-logic-app-workflow>
     - Manage Azure Function app settings
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings#settings>
+      - Settings blade where you configure and manage framework versions, remote debugging, app settings, and connection strings
     - Manage Event Grid
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/event-grid/overview>
+      - Event Grid allows you to build applications with event-based architectures
+      - Reactive programming / Event distribution (discrete) / React to status changes - The event data has information about what happened but doesn't have the data that triggered the event.
+      - Select the Azure resource you would like to subscribe to, and then give the event handler or WebHook endpoint to send the event to
+      - Event Grid has built-in support for events coming from Azure services
+      - Also support for your own events, using custom topics.
+      - Can use filters to route specific events to different endpoints, multicast to multiple endpoints, and make sure events are reliably delivered.
+      - Events, Event sources, Topics, Event subscriptions, Event handlers
+      - <https://docs.microsoft.com/en-us/azure/event-grid/blob-event-quickstart-portal>
     - Manage Service Bus
-      - **TODO**
+      - <https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview>
+      - High-value enterprise messaging / Message / Order processing and financial transactions
+      - Service Bus is intended for traditional enterprise applications. These enterprise applications require transactions, ordering, duplicate detection, and instantaneous consistency.
+      - When handling high-value messages that cannot be lost or duplicated, use Azure Service Bus.
+      - reliable asynchronous message delivery, advanced messaging features like FIFO, batching/sessions, transactions, dead-lettering, temporal control, routing and filtering, and duplicate detection, at least once delivery, optional in-order delivery
+      - <https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-create-namespace-portal>
   - Implement application load balancing
     - Configure application gateway and load balancing rules
       - <https://docs.microsoft.com/en-us/azure/application-gateway/overview>
@@ -352,28 +372,57 @@ ___
       - Azure Load Balancer (External, Internal), Azure Application Gateway (External, Internal), Azure Traffic Manager (Global selector)
   - Integrate on premises network with Azure virtual network
     - Create and configure Azure VPN Gateway
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways>
+      - To send encrypted traffic between an Azure virtual network and an on-premises location over the public Internet. You can also use a VPN gateway to send encrypted traffic between Azure virtual networks over the Microsoft network. Each virtual network can have only one VPN gateway. However, you can create multiple connections to the same VPN gateway (Multisite/Route Based/Dynamic GW). When you create multiple connections to the same VPN gateway, all VPN tunnels share the available gateway bandwidth.
+      - Type: Point-to-Site, Site-to-Site, VNet-to-VNet, VNet peering, ExpressRoute
+      - SKU: Basic(Legacy), VpnGw1(650Mbps), VpnGw2(1Gbps), VpnGw3(1.25Gbps)
+      - <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-tutorial-create-gateway-powershell>
+      - Public IP, Gateway Subnet, Gateway Ip Config + SKU/Type => Creates GW
+      - Create also Local network gateway (refers to on-premises location) => My Public IP, My Addr onPrem space
+      - S2S Connection => GW + Local network gateway + Shared key PSK
+      - In the Azure portal, you can view the connection status of a Resource Manager VPN Gateway by navigating to the connection
     - Create and configure site to site VPN
-      - **TODO**
+      - <https://blogs.technet.microsoft.com/canitpro/2017/06/28/step-by-step-configuring-a-site-to-site-vpn-gateway-between-azure-and-on-premise/>
+      - <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal>
     - Configure Express Route
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/expressroute/expressroute-introduction/>
+      - Connect on-premises networks into the Microsoft cloud over a private connection facilitated by a connectivity provider (Azure, Office 365, and Dynamics 365)
+      - More reliability, faster speeds, lower latencies, and higher security than typical connections over the Internet
+      - Dynamic routing via BGP (to exchange routes), Built-in redundancy, Global connectivity or Region connectivity
+      - Unlimited data, Metered data, ExpressRoute premium add-on
+      - <https://docs.microsoft.com/en-us/azure/expressroute/expressroute-howto-circuit-portal-resource-manager>
+      - ExpressRoute circuit is billed from the moment a service key is issued. Ensure that connectivity provider is ready to provision the circuit.
+      - Provider, Peering location, Bandwidth, SKU, Billing model => pass service key down to the service provider to complete the provisioning process
+      - These instructions only for service providers that offer layer 2 connectivity services. For managed layer 3 (MPLS), your connectivity provider configures and manages routing for you.
     - Verify on premises connectivity
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal#VerifyConnection>
+      - Azure portal => virtual network gateway => Connections => Status is 'Succeeded' and 'Connected'
     - Manage on-premise connectivity with Azure
       - **TODO**
   - Manage role-based access control (RBAC)
     - Create a custom role
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/role-based-access-control/custom-roles>
+      - Custom roles are stored in an Azure Active Directory (Azure AD) directory and can be shared across subscriptions
+      - Create a custom role with a JSON template, add changes, and create a new role
+      - AssignableScopes, Actions, NotActions
+      - ```az role definition create --role-definition ~/roles/vmoperator.json```
     - Configure access to Azure resources by assigning roles
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal>
     - Configure management access to Azure
       - **TODO**
     - Troubleshoot RBAC
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/role-based-access-control/troubleshooting>
     - Implement RBAC policies
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/governance/policy/overview>
+      - Policy focuses on resources during deployment and for already existing resources. Policy controls properties such as the types or locations of resources. Unlike RBAC, Policy is a default allow and explicit deny system.
+      - Creating and implementing a policy begins with policy definition. Policy definition has conditions under which it's enforced. And, it has a defined effect that takes place if the conditions are met.
+      - A policy assignment is a policy definition that has been assigned to specific scope. This scope could range from a management group to a resource group.
+      - Scope refers to resource groups, subscriptions, or management groups.
+      - Policy assignments are inherited by all child resources to resources in resource group. You can exclude a subscope from the policy assignment.
+      - For example, at the subscription scope, you can assign a policy that prevents the creation of networking resources. You could exclude a resource group in that subscription that is intended for networking infrastructure. You then grant access to this networking resource group to users that you trust with creating networking resources.
+      - <https://docs.microsoft.com/en-us/azure/governance/policy/assign-policy-portal>
     - Assign RBAC roles
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal>
   - Implement Multi-Factor Authentication (MFA)
     - Enable MFA for an Azure tenant
       - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-getstarted>
@@ -425,18 +474,6 @@ ___
         - Notification through mobile Microsoft Authenticator app - Sends a push notification to your device. The user views the notification and selects Verify to complete verification.
         - Verification code from mobile app or hardware token - Microsoft Authenticator app generates a new OATH verification code every 30 seconds
       - Azure Portal -> AAD -> Users and groups -> All users -> Multi-Factor Authentication -> service settings -> verification options -> select/unselect the methods -> Save
-    - Manage role-based access control (RBAC)
-      - **TODO**
-    - Implement RBAC policies
-      - **TODO**
-    - Assign RBAC Roles
-      - **TODO**
-    - Create a custom role
-      - **TODO**
-    - Configure access to Azure resources by assigning roles
-      - **TODO**
-    - Configure management access to Azure
-      - **TODO**
 
 ___
 
