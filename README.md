@@ -7,6 +7,7 @@
 - View video tutorials about the variety of question types - <https://www.microsoft.com/en-us/learning/certification-exams.aspx?types=true>
 - How to Prepare for Microsoft Azure Exam AZ-300? - <https://www.whizlabs.com/blog/az-300-exam-preparation/>
 - Another source of information <https://gregorsuttie.com/2018/10/02/azure-architect-design-az-300-exam/>
+- Yet Another source of information <https://thomasthornton.cloud/2018/12/28/microsoft-azure-exam-az-102-preparation-tips-and-study-notes/>
 - Lab instructions and lab files - <https://github.com/prashbv/AZ-300-MicrosoftAzureArchitectTechnologies>
 - Preparation courses - <https://courses.microsoft.com/courses>
 - Certification Prep Immersive Session: Azure Solutions Architect: Exams AZ 300 and AZ 301 - <https://content.microsoftready.com/FY19Q3/Session/CPS-CRT201>
@@ -332,21 +333,44 @@ ___
 - Implement Workloads and Security (20-25%)
   - Migrate servers to Azure
     - Migrate by using Azure Site Recovery (ASR)
-      - **TODO**
-    - Migrate using P2V
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/migrate-tutorial-on-premises-azure#migrate-to-azure>
+      - Run a failover for the machines you want to migrate. Azure Portal -> ASR -> In Settings -> Replicated items click the machine -> Failover -> Select the latest recovery point.
+      - Select Shut down machine before beginning failover.
+      - Check that the Azure VM appears in Azure as expected
+      - Azure Portal -> ASR -> In Settings -> Replicated items click the machine -> Complete Migration (stops Site Recovery billing for the VM)
+      - Post-migration steps: Change connection strings and redirect onPrem communication, if not installed install Azure VM agent, Manually remove any Site Recovery provider/agent from the VM, change NSG, Add monitoring agent
+    - Migrate using Physical to Virtual
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/physical-azure-architecture>
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/physical-azure-disaster-recovery>
+      - Configuration server, Process server (part of Configuration server), Master target server (part of Configuration server), Mobility service (on source Physical machine)
     - Configure storage
-      - **TODO**
+      - <https://azure.microsoft.com/es-es/blog/managed-disks-with-azure-site-recovery/>
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/vmware-azure-exclude-disk>
+      - By default, all disks on a machine are replicated. To exclude a disk from replication, you must manually install the Mobility service on the machine before you enable replication if you are replicating from VMware to Azure.
     - Create a backup vault
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/tutorial-prepare-azure#create-a-recovery-services-vault>
     - Prepare source and target environments
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/physical-azure-set-up-source>
+      - Protection goal, Unified setup, use proxy if needed, ASR Key, install Configuration server, Process server, Master target server, set accounts
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/vmware-azure-set-up-target>
+      - Select Subscription, Resource Manager model, ensure that you have at least one virtual network in the target subscription to replicate and failover your virtual machine or physical server to.
     - Backup and restore data
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview>
+      - <https://docs.microsoft.com/en-us/azure/backup/backup-azure-vms-first-look-arm>
+      - VM, Recovery Services vault, backup policy, Enable Backup
+      - <https://docs.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms>
+      - Number of ways to restore a VM: Create a new VM (New VM name), Restore disk, Replace existing (replace a disk), Recover files
+      - <https://docs.microsoft.com/en-us/azure/backup/backup-azure-restore-files-from-vm>
+      - <https://docs.microsoft.com/en-us/azure/backup/backup-instant-restore-capability>
+      - Using Recovery Services vaults, you can restore files and folders from an IaaS VM without restoring the entire VM, which enables faster restore times. Instant restore for IaaS VMs is available for both Windows and Linux VMs.
     - Deploy Azure Site Recovery (ASR) agent
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/vmware-physical-mobility-service-overview>
+      - You install the Site Recovery Mobility service on each on-premises VMware VM and physical server. The Mobility service captures data writes on the machine, and forwards them to the Site Recovery process server.
+      - Push installation (requires account for installing the service), Install manually (UI or command prompt), Automated deployment - E.g. System Center Configuration Manager.
     - Prepare virtual network
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/tutorial-prepare-azure#set-up-an-azure-network>
+      - <https://docs.microsoft.com/en-us/azure/site-recovery/site-recovery-manage-network-interfaces-on-premises-to-azure>
+      - Create standard VNET. It should not overlap with any existing network range.
   - Configure serverless computing
     - Create and manage objects
       - **TODO**
