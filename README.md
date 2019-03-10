@@ -7,6 +7,7 @@
 - View video tutorials about the variety of question types - <https://www.microsoft.com/en-us/learning/certification-exams.aspx?types=true>
 - How to Prepare for Microsoft Azure Exam AZ-300? - <https://www.whizlabs.com/blog/az-300-exam-preparation/>
 - Another source of information <https://gregorsuttie.com/2018/10/02/azure-architect-design-az-300-exam/>
+- Lab instructions and lab files - <https://github.com/prashbv/AZ-300-MicrosoftAzureArchitectTechnologies>
 - Preparation courses - <https://courses.microsoft.com/courses>
 - Certification Prep Immersive Session: Azure Solutions Architect: Exams AZ 300 and AZ 301 - <https://content.microsoftready.com/FY19Q3/Session/CPS-CRT201>
 
@@ -280,18 +281,44 @@ Practice tests will be available in February or March 2019.
       - Azure Portal -> AAD -> Password reset -> Authentication methods -> Number of methods required to reset to 2
       - Azure Portal -> AAD -> Password reset -> Notifications (Notify users on password resets, Notify all admins when other admins reset their password), Registration (Require users to register when signing in), Customization (Customize helpdesk link)
     - Implement conditional access policies
-      - **TODO**
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/conditional-access/app-based-mfa#create-your-conditional-access-policy>
+      - Azure Portal -> AAD -> Security section -> Conditional Access -> New policy -> Select user/groups; select app; Grant access/Require multi-factor authentication -> Enable policy
     - Manage multiple directories
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-access-create-new-tenant#create-a-new-tenant-for-your-organization>
+      - Azure Portal -> Create Azure Active Directory (Organization name, domain name, region)
     - Perform an access review
-      - **TODO**
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/governance/access-reviews-overview>
+      - To use access reviews, you must have one of the following licenses:
+        - Azure AD Premium P2
+        - Enterprise Mobility + Security (EMS) E5 license
+      - Azure Portal -> Create Access Reviews -> Onboard -> Create (select directory)
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/governance/create-access-review>
+      - Access to groups and applications for employees and guests changes over time. To reduce the risk associated with stale access assignments, administrators can use Azure Active Directory (Azure AD) to create access reviews for group members or application access. If you need to routinely review access, you can also create recurring access reviews.
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/governance/perform-access-review>
+      - Decide whether to have each user review their own access or to have one or more users review everyone's access.
+      - When the access review starts, ask the reviewers to give input. By default, they each receive an email from Azure AD with a link to the access panel, where they review access to groups or applications.
   - Implement and manage hybrid identities
     - Install and configure Azure AD Connect
-      - **TODO**
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/hybrid/how-to-connect-install-custom>
     - Configure federation and single sign-on
-      - **TODO**
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/hybrid/how-to-connect-fed-management#addfeddomain>
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/hybrid/whatis-fed>
+      - Federation is a collection of domains that have established trust. The level of trust may vary, but typically includes authentication and almost always includes authorization.
+      - You can federate your on-premises environment with Azure AD and use this federation for authentication and authorization. This sign-in method ensures that all user authentication occurs on-premises.
+      - Azure Active Directory (Azure AD) Connect lets you configure federation with on-premises Active Directory Federation Services (AD FS) and Azure AD. With federation sign-in, you can enable users to sign in to Azure AD-based services with their on-premises passwords and, while on the corporate network, without having to enter their passwords again.
+      - Add a domain to be federated with Azure AD by using Azure AD Connect. Azure AD Connect adds the domain for federation and modifies the claim rules to correctly reflect the issuer when you have multiple domains federated with Azure AD.
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/hybrid/how-to-connect-sso-quick-start>
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/hybrid/how-to-connect-sso>
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/hybrid/how-to-connect-pta>
+      - Azure Active Directory Seamless Single Sign-On (Azure AD Seamless SSO) automatically signs users in when they are on their corporate devices connected to your corporate network. When enabled, users don't need to type in their passwords to sign in to Azure AD, and usually, even type in their usernames.
+      - Seamless SSO can be combined with either the Password Hash Synchronization or Pass-through Authentication sign-in methods. Seamless SSO is not applicable to Active Directory Federation Services (ADFS). Seamless SSO needs the user's device to be domain-joined, but doesn't need for the device to be Azure AD Joined.
+      - At the User sign-in page (AD Connect), select the Enable single sign on option. Only if the Sign On method is Password Hash Synchronization or Pass-through Authentication.
+      - Verify that the Seamless single sign-on feature appears as Enabled. Azure Portal -> Azure Active Directory -> Azure AD Connect -> Seamless single sign-on is Enabled
+      - You start by adding the following Azure AD URL to all or selected users' Intranet zone settings by using Group Policy in Active Directory: <https://autologon.microsoftazuread-sso.com>
+      - You need to enable an Intranet zone policy setting called Allow updates to status bar via script through Group Policy.
     - Manage Azure AD Connect
-      - **TODO**
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/hybrid/how-to-connect-configure-ad-ds-connector-account>
+      - <https://docs.microsoft.com/en-gb/azure/active-directory/hybrid/concept-azure-ad-connect-sync-architecture>
     - Manage password sync and writeback
       - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/concept-sspr-writeback>
       - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-sspr-writeback>
