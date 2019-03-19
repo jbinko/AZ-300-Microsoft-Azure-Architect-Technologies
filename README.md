@@ -206,9 +206,7 @@ Practice tests will be available in February or March 2019.
       - <https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/quick-create-portal>
       - Azure portal -> Create Virtual machine scale set -> Name; OS Type; Resource Group; User Name and Credentials or SSH Keys; Location; Instances count and VM size
       - Load balancer is created. NAT rules are used for remote connectivity such as RDP or SSH. E.g. VM1 104.42.1.19:50001, VM2 104.42.1.19:50002
-      - ```az vmss create --resource-group myResourceGroup --name myScaleSet --image UbuntuLTS --upgrade-policy-mode automatic --admin-username azureuser --generate-ssh-keys```
-      - ```az vmss extension set --publisher Microsoft.Azure.Extensions --version 2.0 --name CustomScript --resource-group myResourceGroup --vmss-name myScaleSet --settings '{"fileUris":["https://raw.githubusercontent.com/Azure-Samples/compute-automation-configurations/master/automate_nginx.sh"],"commandToExecute":"./automate_nginx.sh"}'```
-      - ```az network lb rule create --resource-group myResourceGroup --name myLoadBalancerRuleWeb --lb-name myScaleSetLB --backend-pool-name myScaleSetLBBEPool --backend-port 80 --frontend-ip-name loadBalancerFrontEnd --frontend-port 80 --protocol tcp```
+      - ```az vmss create --resource-group myResourceGroup --name myScaleSol tcp```
       - ```az monitor autoscale create --resource-group myResourceGroup --resource myScaleSet --resource-type Microsoft.Compute/virtualMachineScaleSets --name autoscale --min-count 2 --max-count 10 --count 2```
       - ```az monitor autoscale rule create --resource-group myResourceGroup --autoscale-name autoscale --condition "Percentage CPU > 70 avg 5m" --scale out 3```
       - ```az monitor autoscale rule create --resource-group myResourceGroup --autoscale-name autoscale --condition "Percentage CPU < 30 avg 5m" --scale in 1```
@@ -478,12 +476,7 @@ ___
     - Enable MFA for an Azure tenant
       - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-getstarted>
       - Requires global administrator account in Azure AD tenant.
-      - Correct licenses assigned to users
-        - Multi-Factor Authentication for Office 365 Microsoft 365 Business - Works only for O365/M365 This version is part of an Office 365 or Microsoft 365 Business subscription.
-        - Multi-Factor Authentication for Azure AD Administrators - Works only for Azure AD Global Administrator role at no additional cost.
-        - Azure Multi-Factor Authentication - Full version. Additional configuration options via the Azure portal, advanced reporting, and support for a range of on-premises and cloud applications. Requires Azure Active Directory Premium, and can be deployed either in the cloud or on-premises.
-      - Choose how to enable
-        - Enabled by conditional access policy - the most flexible way to enable two-step verification for your users
+      - Correct licenses assigned to usershe most flexible way to enable two-step verification for your users
         - Enabled by Azure AD Identity Protection - uses the Azure AD Identity Protection risk policy to require two-step verification based only on sign-in risk for all cloud applications
         - Enabled by changing user state - requires users to perform two-step verification every time they sign in and overrides conditional access policies
       - Enable at least one authentication method (best is Microsoft Authenticator)
@@ -506,10 +499,7 @@ ___
       - Azure Active Directory -> MFA -> One-time bypass -> Add, username as username@domain.com enter the number of seconds and reason.
       - View one-time bypass reports: Azure Portal -> AAD -> MFA -> One-time bypass
     - Configure trusted IPs
-      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings#trusted-ips>
-      - Is used by administrators of a managed or federated tenant. Bypasses two-step verification for users who sign in from the company intranet. Only available in Full version of MFA and only IPv4.
-      - Step 1: Azure Portal -> AAD -> Conditional access -> Named locations -> New location -> Mark as trusted location -> enter CIDR -> Create
-      - Step 2: Azure Portal -> AAD -> Conditional access -> Named locations -> Configure MFA trusted IPs
+      - <https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings#trusted-ips>s
         - Select -> For requests from a specific range of public IPs -> enter CIDR
         - Or Select -> For requests from federated users originating from my intranet (All federated users who sign in from the corporate network bypass two-step verification by using a claim that is issued by AD FS)
         - Save
@@ -531,63 +521,157 @@ ___
 - Create and Deploy Apps (5-10%)
   - Create web apps by using PaaS
     - Create an Azure App Service Web App
-      - **TODO**
+      - <https://www.c-sharpcorner.com/blogs/stepbystep-guide-to-creating-a-web-app-on-azure-portal>
     - Create documentation for the API
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-functions/functions-openapi-definition#generate-the-openapi-definition>
+      - <https://blogs.msdn.microsoft.com/appserviceteam/2017/03/30/announcing-functions-swagger-support/>
+      - <https://lightbuzz.com/swagger-azure-step-by-step/>
+      - <https://www.hakantuncer.com/2018/09/16/api-versioning-with-swagger-azure-api-management-services-and-asp-net-core-a-frictionless-devops-experience/>
+      - <https://developers.de/blogs/damir_dobric/archive/2015/04/10/how-to-activate-swagger-in-your-api-app.aspx>
     - Create an App Service Web App for containers
-      - **TODO**
+      - <https://dzone.com/articles/why-azure-web-app-on-linux-is-huge>
+      - <https://azure.microsoft.com/en-us/blog/general-availability-of-app-service-on-linux-and-web-app-for-containers/>
+      - <https://docs.microsoft.com/en-us/azure/app-service/containers/app-service-linux-ci-cd>
+      - Windows (Windows Server Container, docker hub, ACR, private registry, no docker compose support, no Kubernetes support)
+      - Linux (same as above + docker compose support, Kubernetes support)
+      - Application Insights
     - Create an App Service background task by using WebJobs
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/app-service/webjobs-create#CreateContinuous>
+      - No additional cost to use WebJobs, not yet supported for App Service on Linux
+      - Continuous, Triggered (manual, scheduled)
+      - If your app runs continuous or scheduled WebJobs, enable Always On to ensure that the WebJobs run reliably (time out after 20 minutes of inactivity)
+      - exe, cmd, PowerShell, Bash, PHP, Python, Node, Java
     - Enable diagnostics logging
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs#enablediag>
+      - Settings -> Diagnostics logs -> Level (Disabled, Error, Warning, Information, Verbose)
+      - File system option temporarily for debugging purposes. This option turns off automatically in 12 hours.
   - Design and develop apps that run in containers
     - Configure diagnostic settings on resources
       - **TODO**
     - Create a container image by using a Docker file
       - **TODO**
     - Create an Azure Container Service (ACS/AKS)
-      - **TODO**
+      - <https://stackify.com/azure-container-service-kubernetes/>
     - Publish an image to the Azure Container Registry
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli>
+      - An Azure container registry stores and manages private Docker container images, similar to the way Docker Hub stores public Docker images. You can use the Docker command-line interface (Docker CLI) for login, push, pull, and other operations on your container registry.
+      - ```az acr login --name myregistry (preffered) or docker login myregistry.azurecr.io```
+      - ```docker pull nginx```
+      - ```docker run -it --rm -p 8080:80 nginx```
+      - ```docker tag nginx myregistry.azurecr.io/samples/nginx```
+      - ```docker push myregistry.azurecr.io/samples/nginx```
+      - ```docker pull myregistry.azurecr.io/samples/nginx```
+      - ```docker run -it --rm -p 8080:80 myregistry.azurecr.io/samples/nginx```
     - Implement an application that runs on an Azure Container Instance
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-portal>
     - Manage container settings by using code
-      - **TODO**
+      - <https://mikepfeiffer.io/azure-docker-containers.html>
 
 ___
 
 - Implement Authentication and Secure Data (5-10%)
   - Implement authentication
     - Implement authentication by using certificates, forms-based authentication, tokens, or Windows-integrated authentication
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/app-service/app-service-web-configure-tls-mutual-auth>
+      - ```az webapp update --set clientCertEnabled=true --name <app_name> --resource-group <group_name>```
+      - App Service injects an X-ARR-ClientCert request header with the client certificate
+      - <https://docs.microsoft.com/en-us/dotnet/framework/security/how-to-build-claims-aware-aspnet-web-forms-app-using-wif>
+      - <https://docs.microsoft.com/en-us/dotnet/framework/security/claims-aware-aspnet-app-forms-authentication>
+      - <https://docs.microsoft.com/en-us/azure/app-service/overview-authentication-authorization>
+      - authentication and authorization module: Authenticates users with the specified provider; Validates, stores, and refreshes tokens; Manages the authenticated session; Injects identity information into request headers
+      - App Service uses federated identity, in which a third-party identity provider manages the user identities and authentication flow for you.
+      - Azure Active Directory | Microsoft Account | Facebook | Google | Twitter
+      - User claims - For all language frameworks, App Service makes the user's claims available to your code by injecting them into the request headers. For ASP.NET 4.6 apps, App Service populates ClaimsPrincipal.Current with the authenticated user's claims,
+      - Token store - App Service provides a built-in token store, which is a repository of tokens that are associated with the users of your web apps, APIs, or native mobile apps. When you enable authentication with any provider, this token store is immediately available to your app. If your application code needs to access data from these providers on the user's behalf,
+      - <https://docs.microsoft.com/en-us/dotnet/framework/security/how-to-build-claims-aware-aspnet-app-using-windows-authentication>
+      - ```<authentication mode="Windows" />```
     - Implement multi-factor authentication by using Azure AD
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/app-based-mfa>
     - Implement OAuth2 authentication
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-protect-backend-with-aad>
+      - <https://docs.microsoft.com/en-us/azure/app-service/configure-authentication-provider-aad>
+      1. Register an application (backend-app) in Azure AD to represent the API.
+      2. Register another application (client-app) in Azure AD to represent a client application that needs to call the API.
+      3. In Azure AD, grant permissions to allow the client-app to call the backend-app.
+      4. Configure the Developer Console to use OAuth 2.0 user authorization.
+      5. Add the validate-jwt policy to validate the OAuth token for every incoming request.
     - Implement Managed Service Identity (MSI) Service Principal authentication
-      - **TODO**
+      - <https://blogs.msdn.microsoft.com/benjaminperkins/2018/06/13/using-managed-service-identity-msi-with-and-azure-app-service-or-an-azure-function/>
   - Implement secure data solutions
     - Encrypt and decrypt data at rest and in transit
-      - **TODO**
+      - <https://cloudacademy.com/blog/how-does-azure-encrypt-data/>
+      - Data written to Azure Blob storage is encrypted when placed on disk, TDE, KeyVault, Azure Key Vault managed encryption is enabled by default on managed disks
+      - All sessions with Azure services and data centers are secured using the Transport Layer Security (TLS) cryptographic protocol and Forward Secrecy (also known as Perfect Forward Secrecy or PFS), a key agreement protocol
     - Encrypt data with Always Encrypted
-      - **TODO**
+      - <https://azure.microsoft.com/en-us/blog/transparent-data-encryption-or-always-encrypted/>
+      - <https://docs.microsoft.com/en-us/azure/sql-database/sql-database-always-encrypted-azure-key-vault#encrypt-columns-configure-always-encrypted>
+      - TDE is intended to add a layer of security to protect data at rest from offline access to raw files or backups, common scenarios include datacenter theft or unsecured disposal of hardware or media such as disk drives and backup tapes.
+      - Always Encrypted is a feature designed to protect sensitive data, stored in Azure SQL Database or SQL Server databases from access by database administrators. Always Encrypted leverages client-side encryption: a database driver inside an application transparently encrypts data, before sending the data to the database. Similarly, the driver decrypts encrypted data retrieved in query results.
+      - Column encryption keys are used to encrypt data in the database. These keys are stored in the database in the encrypted form (never in plaintext).
+      - Column master keys are used to encrypt column encryption keys. These keys are stored in an external key store, such as Windows Certificate Store, Azure Key Vault or hardware security modules. For keys stored in Azure Key Vault, only the client application has access to the keys, but not the database, unlike TDE.
+      - It is often advised to use Always Encrypted, TDE, and TLS together
     - Implement Azure Confidential Compute and SSL/TLS communications
-      - **TODO**
+      - <https://azure.microsoft.com/cs-cz/blog/introducing-azure-confidential-computing/>
+      - Trusted Execution Environment (TEE - also known as an enclave), TEEs ensure there is no way to view data or the operations inside from the outside, even with a debugger.
+      - Virtual Secure Mode and Intel SGX. VSM and SGX-enabled virtual machines.
+      - All sessions with Azure services and data centers are secured using the Transport Layer Security (TLS) cryptographic protocol and Forward Secrecy (also known as Perfect Forward Secrecy or PFS), a key agreement protocol
     - Create, read, update, and delete keys, secrets, and certificates by using the KeyVault API
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/rest/api/keyvault/>
 
 ___
 
 - Develop for the Cloud (20-25%)
   - Configure a message-based integration architecture
     - Configure an app or service to send emails, Event Grid, and the Azure Relay Service
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/event-grid/monitor-virtual-machine-changes-event-grid-logic-app#send-email-when-your-virtual-machine-changes>
+      - E.g. Office 365 Outlook connector, Outlook.com connector, Gmail connector
+      - <https://docs.microsoft.com/en-us/azure/event-grid/monitor-virtual-machine-changes-event-grid-logic-app#create-a-logic-app-that-monitors-events-from-an-event-grid>
+      - <https://docs.microsoft.com/en-us/azure/service-bus-relay/relay-what-is-it>
+      - <https://docs.microsoft.com/en-us/azure/app-service/app-service-hybrid-connections#add-and-create-hybrid-connections-in-your-app>
+        - Hybrid Connections - Uses the open standard web sockets enabling multi-platform scenarios.
+        - WCF Relays - .NET Only. Uses Windows Communication Foundation (WCF) to enable remote procedure calls. WCF Relay is the legacy relay offering.
     - Create and configure Notification Hub, Event Hub, and Service Bus
-      - **TODO**
+      - <https://docs.microsoft.com/en-gb/azure/event-grid/compare-messaging-services>      
+
+      - <https://docs.microsoft.com/en-us/azure/notification-hubs/create-notification-hub-portal>
+      - Easy-to-use and scaled-out push engine that allows you to send notifications to any platform (iOS, Android, Windows, Kindle, Baidu, etc.) from backend
+      - Push notifications is a form of app-to-user communication
+      - Create a Notification Hubs namespace and a hub in that namespace
+      - Create Hub: Name for the notification hub, name for the namespace, location, pricing tier
+      - <https://docs.microsoft.com/en-us/azure/notification-hubs/configure-notification-hub-portal-pns-settings>
+
+      - <https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create>
+      - Big Data streaming platform and event ingestion service
+      - An Event Hubs namespace provides a unique scoping container (FQDN), in which you create one or more event hubs.
+      - Create Namespace: Namespace name, pricing tier, Kafka option, zone redundancy, location, throughput, auto inflate option
+      - Create Event hub: Event hub name inside namespace, # of partitions, message retention, capture option
+
+      - <https://docs.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-create-namespace-portal>
+      - Namespace with a name that must be unique across Azure, pricing tier (Basic, Standard, or Premium), zone redundancy, Shared Access Signature (SAS), Shared access policies Manage, Send, Listen.
+      - Topics/subscriptions are not supported in the Basic pricing tier
+      - A namespace is a scoping container for all messaging components. Multiple queues and topics can reside within a single namespace, and namespaces often serve as application containers.
     - Configure queries across multiple products
       - **TODO**
   - Develop for autoscaling
     - Implement autoscaling rules and patterns (schedule, operational/system metrics, code that addresses singleton application instances)
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-overview>
+      - <https://docs.microsoft.com/en-us/azure/virtual-machines/windows/autoscale>
+      - Autoscale applies to Virtual Machine Scale Sets, Cloud Services, Web Apps, and API Management
+      - Allows to add resources to handle increases in load and also save money by removing resources that are sitting idle. You specify a minimum and maximum number of instances to run and add or remove VMs automatically based on a set of rules.
+      - When rule conditions are met, one or more autoscale actions are triggered. You can add and remove VMs, or perform other actions.
+      - Resources emit metrics, these metrics are later processed by rules. Virtual machine scale sets use telemetry data from Azure diagnostics agents whereas telemetry for Web apps and Cloud services comes directly from the Azure Infrastructure. Some commonly used statistics include CPU Usage, memory usage, thread counts, queue length, and disk usage.
+      - Schedule-based rules are based on UTC. You must set your time zone properly when setting up your rules.
+      - Metric-based - For example, do this action when CPU usage is above 50%.
+      - Time-based - For example, trigger a webhook every 8am on Saturday in a given time zone.
+      - Metric-based rules measure application load and add or remove VMs based on that load. Schedule-based rules allow you to scale when you see time patterns in your load and want to scale before a possible load increase or decrease occurs.
+      - Rules can trigger one or more types of actions.
+        - Scale - Scale VMs in or out
+        - Send email
+        - Call webhooks, which can trigger multiple complex actions inside or outside Azure. (Azure Automation runbook, Azure Function, or Azure Logic App)
+      - <https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-singletons>
+      - For background jobs you often need to ensure that only one instance of a particular orchestrator runs at a time. This can be done in Durable Functions by assigning a specific instance ID to an orchestrator when creating it.
     - Implement code that addresses transient state
-      - **TODO**
+      - <https://docs.microsoft.com/en-us/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling>
+      - You have to think about is how to handle temporary service interruptions, You can frequently get little glitches that are typically self-healing
+      - Use smart retry/back-off logic to mitigate the effect of transient failures
+      - You can recognize errors that are typically transient, and automatically retry the operation that resulted in the error, in hopes that before long you'll be successful. Most of the time the operation will succeed on the second try, and you'll recover from the error without the customer ever having been aware that there was a problem.
