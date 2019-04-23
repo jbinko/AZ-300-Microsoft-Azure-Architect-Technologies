@@ -24,6 +24,7 @@ If this happens for the second time, the candidate must wait for at least 14 day
 - Do time management (after hands on labs some additional questions still might come), better to skip hands on labs if you are blocked by some hard question and answer rest of questions.
 
 Practice tests will be available in February or March 2019.
+<https://www.measureup.com/microsoft-azure-architect-technologies.html>
 
 ## Skills measured and links
 
@@ -39,11 +40,13 @@ Practice tests will be available in February or March 2019.
       - Collection of diagnostic logs can be enabled as part of creating a resource in a Resource Manager template or after a resource is created from that resource's page in the portal. You can also enable collection at any point using Azure PowerShell or CLI commands, or using the Azure Monitor REST API.
     - Create baseline for resources
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-dynamic-thresholds>
+      - Azure portal -> Monitor -> Alerts -> New alert rule
       - Metric Alert with Dynamic Thresholds detection uses ML to learn metrics' historical behavior, identify patterns and anomalies.
       - Threshold setting - sensitivity controls the amount of deviation from metric behavior for alert. Sensitivity (High/Medium/Low)
       - Operator setting - trigger when Lower than lower threshold; Greater than upper threshold; Greater than the upper threshold or lower than the lower threshold (default)
     - Create and raise alerts
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-metric>
+      - Azure portal -> Monitor -> Alerts -> New alert rule
       - Metric alerts in Azure Monitor provide a way to get notified when one of your metrics cross a threshold. Metric alerts work on a range of multi-dimensional platform metrics, custom metrics, Application Insights standard and custom metrics.
       - ```az monitor metrics alert create -n {nameofthealert} -g {ResourceGroup} --scopes {VirtualMachineResourceID} --condition "avg Percentage CPU > 90" --description {descriptionofthealert}```
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-classic-portal>
@@ -83,6 +86,8 @@ Practice tests will be available in February or March 2019.
     - Utilize Log Search query functions
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/log-query-overview>
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/functions>
+      - <https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/portals>
+      - Azure portal -> Monitor -> Logs -> Log Analytics
       - Demo environment - <https://portal.loganalytics.io/demo>
       - Log data collected by Azure Monitor is stored in a Log Analytics workspace, which is based on Azure Data Explorer.
       - To use an query with another query you can save it as a function. This allows you to simplify complex queries by breaking them into parts and allows you to reuse common code with multiple queries.
@@ -91,7 +96,7 @@ Practice tests will be available in February or March 2019.
     - View alerts in Log Analytics
       - <https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-overview#all-alerts-page>
       - Notify you when important conditions are found in your monitoring data. Azure Monitor, which now includes Log Analytics and Application Insights. Not classic alerts.
-      - Alert Rule => Target+Metric+Treshold calls action-group+actions and monitor-condition+alert-state
+      - Alert Rule -> Target+Metric+Treshold calls action-group+actions and monitor-condition+alert-state
   - Create and configure storage accounts
     - Configure network access to the storage account
       - <https://docs.microsoft.com/en-us/azure/storage/common/storage-network-security>
@@ -109,7 +114,7 @@ Practice tests will be available in February or March 2019.
       - ```az storage account create --name storagequickstart --resource-group storage-quickstart-resource-group --location westus --sku Standard_LRS --kind StorageV2```
       - ```New-AzStorageAccount -ResourceGroupName $resourceGroup -Name "storagequickstart" -Location $location -SkuName Standard_LRS -Kind StorageV2```
     - Generate shared access signature
-      - <https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-explorer-blobs>
+      - <https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container>
       - Right-click the desired blob container, and - from the context menu - select Get Shared Access Signature.
     - Install and use Azure Storage Explorer
       - <https://azure.microsoft.com/en-us/features/storage-explorer/>
@@ -156,7 +161,7 @@ Practice tests will be available in February or March 2019.
           Fault domains define the group of virtual machines that share a common power source and network switch. Default, the virtual machines from availability set are separated across up to 2-3 fault domains.
         - Use managed disks for VMs in an availability set
           Managed disks better reliability for Availability Sets. Ensuring that the disks of VMs in an Availability Set are isolated from each other. Automatically placing the disks in different storage fault domains (storage clusters) and aligning them with the VM fault domain.
-          For unmanaged disks
+        - For unmanaged disks
           - Keep all disks (OS and data) associated with a VM in the same storage account.
           - Review the limits on the number of unmanaged disks in a Storage account (performance reasons).
           - Use separate storage account for each VM in an Availability Set
@@ -252,17 +257,19 @@ Practice tests will be available in February or March 2019.
       - Set the TTL (time to live) to 3600 seconds (60 minutes), and then save the information
       - On the page, select Verify to make sure your custom domain is properly registered and is valid for Azure AD
     - Configure Azure AD Identity Protection
+      - <https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/overview>
+      - Azure Portal -> Marketplace -> Azure AD Identity Protection -> Create
+      - Feature of the Azure AD Premium P2 edition
       - <https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/enable>
         - Get a consolidated view of flagged users and risk events detected using machine learning algorithms
         - Set risk-based Conditional Access policies to automatically protect your users
         - Improve security posture by acting on vulnerabilities
-      - <https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/overview>
-      - Azure Portal -> Marketplace -> Azure AD Identity Protection -> Create
-      - Feature of the Azure AD Premium P2 edition
     - Configure Azure AD Join
       - <https://docs.microsoft.com/en-us/azure/active-directory/devices/hybrid-azuread-join-managed-domains>
       - <https://aadguide.azurewebsites.net/aadjoin/>
+      - Seamless SSO + ( Azure AD join, Hybrid Azure AD join (Azure AD Connect), Azure AD registration )
       - Azure AD Connect -> Configure -> Configure device options -> Hybrid Azure AD join
+      - To register Windows down-level devices, you need to download and install the Windows Installer package (.msi) from Download Center on the Microsoft Workplace Join for non-Windows 10 computers page.
     - Configure Azure AD Enterprise State Roaming
       - <https://docs.microsoft.com/en-us/azure/active-directory/devices/enterprise-state-roaming-enable>
       - Enterprise State Roaming is available to any organization with an Azure AD Premium or Enterprise Mobility + Security (EMS) license.
@@ -426,9 +433,9 @@ ___
       - Type: Point-to-Site, Site-to-Site, VNet-to-VNet, VNet peering, ExpressRoute
       - SKU: Basic(Legacy), VpnGw1(650Mbps), VpnGw2(1Gbps), VpnGw3(1.25Gbps)
       - <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-tutorial-create-gateway-powershell>
-      - Public IP, Gateway Subnet, Gateway Ip Config + SKU/Type => Creates GW
-      - Create also Local network gateway (refers to on-premises location) => My Public IP, My Addr onPrem space
-      - S2S Connection => GW + Local network gateway + Shared key PSK
+      - Public IP, Gateway Subnet, Gateway Ip Config + SKU/Type -> Creates GW
+      - Create also Local network gateway (refers to on-premises location) -> My Public IP, My Addr onPrem space
+      - S2S Connection -> GW + Local network gateway + Shared key PSK
       - In the Azure portal, you can view the connection status of a Resource Manager VPN Gateway by navigating to the connection
     - Create and configure site to site VPN
       - <https://blogs.technet.microsoft.com/canitpro/2017/06/28/step-by-step-configuring-a-site-to-site-vpn-gateway-between-azure-and-on-premise/>
@@ -441,11 +448,11 @@ ___
       - Unlimited data, Metered data, ExpressRoute premium add-on
       - <https://docs.microsoft.com/en-us/azure/expressroute/expressroute-howto-circuit-portal-resource-manager>
       - ExpressRoute circuit is billed from the moment a service key is issued. Ensure that connectivity provider is ready to provision the circuit.
-      - Provider, Peering location, Bandwidth, SKU, Billing model => pass service key down to the service provider to complete the provisioning process
+      - Provider, Peering location, Bandwidth, SKU, Billing model -> pass service key down to the service provider to complete the provisioning process
       - These instructions only for service providers that offer layer 2 connectivity services. For managed layer 3 (MPLS), your connectivity provider configures and manages routing for you.
     - Verify on premises connectivity
       - <https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal#VerifyConnection>
-      - Azure portal => virtual network gateway => Connections => Status is 'Succeeded' and 'Connected'
+      - Azure portal -> virtual network gateway -> Connections -> Status is 'Succeeded' and 'Connected'
     - Manage on-premise connectivity with Azure
       - **TODO**
   - Manage role-based access control (RBAC)
